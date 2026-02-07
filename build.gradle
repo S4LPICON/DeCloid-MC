@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+
+allprojects {
+    group = "io.pinzon.decmoid"
+    version = "0.1.0"
+
+    repositories {
+        mavenCentral()
+        maven {
+            url = "https://repo.papermc.io/repository/maven-public/"
+        }
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
+    }
+
+    jar {
+        archiveBaseName.set(project.name)
+    }
+
+    tasks.withType(JavaCompile).configureEach {
+        options.encoding = "UTF-8"
+    }
+
+    // Deshabilita el jar en cualquier subproyecto vacío
+    if (!file("src/main/java").exists()) {
+        tasks.withType(Jar).configureEach {
+            enabled = false
+        }
+    }
+}

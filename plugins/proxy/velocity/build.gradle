@@ -1,0 +1,9 @@
+plugins {
+    id 'java'
+}
+
+dependencies {
+    compileOnly "com.velocitypowered:velocity-api:3.3.0"
+    implementation project(":common")
+}
+

@@ -1,0 +1,6 @@
+rootProject.name = 'decloidMC'
+
+include("core")
+include("common")
+include("plugins:proxy:velocity")
+include("plugins:server:paper")
